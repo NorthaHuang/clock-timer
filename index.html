@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clock / Timer</title>
+
+  <!--========== CSS ==========-->
+  <link rel="stylesheet" href="css/main.css" />
+</head>
+
+<body>
+
+  <!--========== Website ==========-->
+  <div id="website">
+    <p id="time">
+      <span class="num" id="hrNum"></span>
+      <span>:</span>
+      <span class="num" id="minNum"></span>
+      <span>:</span>
+      <span class="num" id="secNum"></span>
+    </p>
+
+    <div id="clock">
+      <div id="line"></div>
+      <div id="longLine"></div>
+
+      <div id="handWrap">
+        <div class="hand" id="hrHand"></div>
+        <div class="hand" id="minHand"></div>
+        <div class="hand" id="secHand"></div>
+      </div>
+    </div>
+
+    <div id="btnWrap">
+      <div class="btn" id="plus" title="加速">+</div>
+
+      <div class="btn" id="play">Play</div>
+      <div class="btn" id="pause">Pause</div>
+      <div class="btn" id="reset">Reset</div>
+
+      <div class="btn" id="minus" title="減速">-</div>
+    </div>
+    
+    <div class="btn" id="menuBtn">Menu</div>
+    <div id="menu">
+      <ul>
+        <li class="hint" id="toTimer">碼表</li>
+        <li id="toClock">時鐘</li>
+      </ul>
+    </div>
+  </div>
+
+
+  <!--========== Javascript ==========-->
+  <script type="text/javascript" src="js/script.js"></script>
+</body>
+
+</html>

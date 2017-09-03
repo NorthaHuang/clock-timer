@@ -1,0 +1,297 @@
+/**
+* Author: Northa Huang
+* Github: https://github.com/NorthaHuang
+* Website: https://northahuang.github.io/
+*/
+
+@charset "utf-8";
+@import "_reset";
+
+
+
+
+/*==============================*\
+         Variables/Mixins
+\*==============================*/
+/*========== 色票 ==========*/
+$color_dark: #1a1c1d;
+$color_gray: #444;
+$color_lightgray: #6a6c6d;
+$color_bright: #eaeced;
+
+
+/*========== Mixins ==========*/
+// Pseudo Class
+@mixin pseudo($display: block, $pos: absolute, $content: ''){
+    content: $content;
+    display: $display;
+    position: $pos;
+}
+
+
+
+
+
+/*==============================*\
+          Common Style
+\*==============================*/
+html, body{
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  
+  color: #eaeced;
+  font-family: Arial, '微軟正黑體', serif;
+  
+  background-color: $color_dark;
+}
+
+
+
+
+
+/*==============================*\
+           Costructure
+\*==============================*/
+#website{
+  width: 100%; height: 100%;
+  transition: all 400ms;
+  position: relative;
+  top: 0; left: 0;
+  
+  &.open{
+    left: 30%;
+  }
+}
+
+/*========== 文字 ==========*/
+#time{
+  margin: 50px auto;
+  font-size: 40px;
+  line-height: 1;
+  text-align: center;
+}
+
+/*========== 時鐘本體 ==========*/
+#clock{
+  width: 80vw;
+  height: 80vw;
+  max-width: 500px;
+  max-height: 500px;
+  margin: auto;
+  
+  border: 5px solid $color_lightgray;
+  border-radius: 100%;
+  
+  background-color: $color_gray;
+  position: relative;
+  
+  // 背景蓋圖
+  &:before, &:after{
+    @include pseudo();
+    
+    border-radius: 100%;
+    background-color: $color_gray;
+  }
+  
+  &:before{
+    width: 96%;
+    height: 96%;
+    
+    z-index: 1;
+    left: 2%;
+    top: 2%;
+  }
+  
+  &:after{
+    width: 90%;
+    height: 90%;
+    
+    z-index: 3;
+    top: 5%;
+    left: 5%;
+  }
+  
+  
+}
+
+
+
+
+
+/*========== 格線 ==========*/
+$lineW: 3px;
+%line{
+  width: $lineW;
+  height: 100%;
+  margin-left: (1-$lineW) / 2;
+  transform-origin: 50% 50%;
+  background-color: $color_dark;
+  
+  position: absolute;
+  top: 0; left: 50%;
+}
+
+#line{
+  div{
+    @extend %line;
+  }
+}
+
+// 大格線
+#longLine{
+  div{
+    @extend %line;
+    z-index: 3;
+  }
+}
+
+
+
+
+
+/*========== 指針 ==========*/
+#handWrap{
+  width: 100%;
+  height: 100%;
+  
+  // 中心原點
+  &:after{
+    @include pseudo();
+    width: 14px;
+    height: 14px;
+    margin: auto;
+    
+    border-radius: 100%;
+    
+    background-color: $color_bright;
+    z-index: 5;
+    top: 0; left: 0; right: 0; bottom: 0;
+  }
+}
+
+// 指針共用
+.hand{
+  transition: all 25ms linear;
+  transform-origin: 50% 100%;
+  transform: rotate(0deg);
+  border-radius: 20px;
+  
+  z-index: 4;
+  position: absolute;
+  bottom: 50%;
+  left: 50%;
+}
+
+// 秒針
+#secHand{
+  width: 1px;
+  height: 40%;
+  background-color: $color_bright;
+}
+
+// 分針
+$minHandW: 3px;
+#minHand{
+  width: $minHandW;
+  height: 35%;
+  margin-left: (1-$minHandW) / 2;
+  background-color: blue;
+}
+
+// 時針
+$hrHandW: 7px;
+#hrHand{
+  width: $hrHandW;
+  height: 25%;
+  margin-left: (1-$hrHandW) / 2;
+  background-color: red;
+}
+
+
+
+
+
+/*========== 按鈕 ==========*/
+#btnWrap{
+  width: 100%;
+  max-width: 1000px;
+  margin: 5% auto;
+  padding: 10px 50px;
+  
+  text-align: center;
+  box-sizing: border-box;
+}
+
+
+.btn{
+  margin-right: 20px;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 10px;
+  
+  color: $color_bright;
+  font-weight: bold;
+  
+  display: inline-block;
+  background-color: $color_lightgray;
+  
+  &:last-child{ margin-right: 0; }
+}
+
+
+
+
+
+/*==============================*\
+              Menu
+\*==============================*/
+$menuW: 300px;
+#menuBtn{
+  opacity: 0.5;
+  transition: all 400ms;
+  position: fixed;
+  top: 20px; left: 20px;
+  
+  &:hover{
+    opacity: 1;
+  }
+  
+  &.open{
+    opacity: 1;
+    left: $menuW + 20px;
+  }
+}
+
+#menu{
+  width: $menuW;
+  height: 100%;
+  transition: all 400ms;
+  
+  display: flex;
+  align-items: center;
+  background-color: $color_gray;
+  position: fixed;
+  top: 0; left: -$menuW;
+  
+  ul{
+    width: 100%;
+    
+    li{
+      padding: 20px 0;
+      cursor: pointer;
+      text-align: center;
+      
+      font-size: 20px;
+      font-weight: bold;
+      
+      &.hint, &:hover{
+        background-color: $color_lightgray;
+      }
+    }
+  }
+  
+  &.open{
+    left: 0;
+  }
+}
