@@ -177,6 +177,10 @@ $lineW: 3px;
   transform: rotate(0deg);
   border-radius: 20px;
   
+  background-color: transparent;
+  background-position: 0 0;
+  background-size: auto;
+  background-repeat: no-repeat;
   z-index: 4;
   position: absolute;
   bottom: 50%;
@@ -185,27 +189,28 @@ $lineW: 3px;
 
 // 秒針
 #secHand{
-  width: 1px;
-  height: 40%;
-  background-color: $color_bright;
+  width: 9px;
+  height: 145px;
+  margin-left: -4px;
+  background-image: url('../images/point_s.png');
 }
 
 // 分針
-$minHandW: 3px;
+$minHandW: 15px;
 #minHand{
   width: $minHandW;
-  height: 35%;
+  height: 97px;
   margin-left: (1-$minHandW) / 2;
-  background-color: blue;
+  background-image: url('../images/point_m.png');
 }
 
 // 時針
-$hrHandW: 7px;
+$hrHandW: 15px;
 #hrHand{
   width: $hrHandW;
-  height: 25%;
+  height: 75px;
   margin-left: (1-$hrHandW) / 2;
-  background-color: red;
+  background-image: url('../images/point_h.png');
 }
 
 
